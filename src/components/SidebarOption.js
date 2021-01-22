@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-function SidebarOption({ Icon, title, number}) {
+function SidebarOption({ Icon, title, number, selected}) {
     return (
-        <Div>
+        <Div selected={selected}>
             <Icon />
             <h3>{title}</h3>
             <p>{number}</p>
@@ -22,6 +22,14 @@ const Div = styled.div`
   border-bottom-right-radius: 20px;
   cursor: pointer;
   color: #818181;
+
+  ${props => props.selected && `
+      background-color: #fcecec;
+      color: #c04b37;
+    h3{font-weight: 800 !important;}
+    p{ display: inline !important; 
+       font-weight: 800 !important;}
+    `}
 
 
   .MuiSvgIcon-root{
