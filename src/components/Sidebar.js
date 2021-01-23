@@ -14,8 +14,6 @@ import PersonIcon from '@material-ui/icons/Person';
 import DuoIcon from '@material-ui/icons/Duo';
 import PhoneIcon from '@material-ui/icons/Phone';
 
-
-
 function Sidebar() {
     return (
         <Div>
@@ -49,6 +47,11 @@ function Sidebar() {
 export default Sidebar
 
 const Div = styled.div`
+   flex: 0.3;
+   max-width: 300px;
+   padding-right: 20px;
+
+
   .sidebar_compose{
       margin-top: 15px;
       margin-left: 10px !important;
