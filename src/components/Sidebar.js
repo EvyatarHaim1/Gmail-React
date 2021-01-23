@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '@material-ui/core';
+import { Button, IconButton } from '@material-ui/core';
 import styled from 'styled-components'
 import AddIcon from '@material-ui/icons/Add';
 import SidebarOption from './SidebarOption';
@@ -10,6 +10,9 @@ import LabelImportantIcon from '@material-ui/icons/LabelImportant';
 import NearMeIcon from '@material-ui/icons/NearMe';
 import NoteIcon from '@material-ui/icons/Note';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import PersonIcon from '@material-ui/icons/Person';
+import DuoIcon from '@material-ui/icons/Duo';
+import PhoneIcon from '@material-ui/icons/Phone';
 
 
 
@@ -20,11 +23,25 @@ function Sidebar() {
             >Compose</Button>
             <SidebarOption Icon={InboxIcon} title="Inbox" number={54} selected />
             <SidebarOption Icon={StarIcon} title="starred" number={31}/>
-            <SidebarOption Icon={AccessTimeIcon} title="Snoozed" number={31}/>
-            <SidebarOption Icon={LabelImportantIcon} title="Important" number={31}/>
-            <SidebarOption Icon={NearMeIcon} title="Sent" number={31}/>
-            <SidebarOption Icon={NoteIcon} title="Drafts" number={31}/>
-            <SidebarOption Icon={ExpandMoreIcon} title="More" number={31}/>
+            <SidebarOption Icon={AccessTimeIcon} title="Snoozed" number={4}/>
+            <SidebarOption Icon={LabelImportantIcon} title="Important" number={7}/>
+            <SidebarOption Icon={NearMeIcon} title="Sent" number={15}/>
+            <SidebarOption Icon={NoteIcon} title="Drafts" number={3}/>
+            <SidebarOption Icon={ExpandMoreIcon} title="More" number={10}/>
+
+            <div className="sidebarFooter">
+                <div className="sidebar_footerIcons">
+                    <IconButton>
+                        <PersonIcon/>
+                    </IconButton>
+                    <IconButton>
+                        <DuoIcon/>
+                    </IconButton>
+                    <IconButton>
+                        <PhoneIcon/>
+                    </IconButton>
+                </div>
+            </div>
         </Div>
     )
 }
@@ -41,5 +58,10 @@ const Div = styled.div`
       padding: 15px !important;
       border-radius: 30px !important;
       box-shadow: 0px 2px 5px -2px rgba(0,0,0,0.75);
+  }
+
+  .sidebarFooter{
+      display: flex;
+      justify-content: center;
   }
 `
