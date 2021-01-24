@@ -1,0 +1,90 @@
+import React from 'react';
+import styled from 'styled-components';
+import CloseIcon from '@material-ui/icons/Close';
+import { Button } from '@material-ui/core';
+
+
+function SendMail() {
+    return (
+        <Div>
+            <div className="sendMail_header">
+                <h3> New Message </h3>
+                <CloseIcon className="sendMail_close" />
+            </div>
+            <form>
+                <input type="text" placeholder="To" />
+                <input type="text" placeholder="Subject" />
+                <input type="text" placeholder="Message..." className="sendMail_message" />
+
+                <div className="sendMail_options">
+                    <Button
+                         className="sendMail_BTN"
+                         variant="contained"
+                         color="primary"
+                         type="submit"
+                         >
+                             Send
+                    </Button>
+                </div>
+            </form>
+        </Div>
+    )
+}
+
+export default SendMail;
+
+const Div = styled.div`
+   position: absolute;
+   bottom: 0px;
+   right: 50px;
+   background-color: #404040;
+   width: 40%;
+   height: 40%;
+   max-width: 500px;
+   display: flex;
+   flex-direction: column;
+   border: 1px solid whitesmoke;
+   box-shadow: 0px 5px 7px 0px rgba(0,0,0,0.24);
+
+   form {
+       display: flex;
+       flex: 1;
+       flex-direction: column;
+   }
+
+   form > input {
+       height: 30px;
+       padding: 10px;
+       border: none;
+       border-bottom: 1px solid whitesmoke;
+       outline: none;
+   }
+
+.sendMail_header{
+    padding: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: gray;
+
+    h3{
+        color: whitesmoke;
+        font-size: 13px;
+    }
+}
+
+.sendMail_BTN{
+    background-color: #3079ed !important;
+    text-transform: capitalize !important;
+    margin: 15px !important;
+}
+
+.sendMail_close{
+    cursor: pointer;
+}
+
+.sendMail_message{
+    flex: 1;
+}
+
+`
