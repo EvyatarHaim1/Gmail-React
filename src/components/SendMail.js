@@ -3,10 +3,14 @@ import styled from 'styled-components';
 import CloseIcon from '@material-ui/icons/Close';
 import { Button } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { closeSendMessage } from '../features/mailSlice';
+
 
 function SendMail() {
 
     const { register , handleSubmit, watch, errors } = useForm();
+    const dispatch = useDispatch();
 
     const onSubmit = (formData) => {
       
@@ -16,7 +20,10 @@ function SendMail() {
         <Div>
             <div className="sendMail_header">
                 <h3> New Message </h3>
-                <CloseIcon className="sendMail_close" />
+                <CloseIcon 
+                        onClick={() => dispatch(closeSendMessage())}
+                        className="sendMail_close" 
+                />
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input 
@@ -113,4 +120,10 @@ const Div = styled.div`
     flex: 1;
 }
 
+.sendMail_error{
+    background-color: white;
+    color: red;
+    text-align:right;
+    padding: 2px;
+}
 `
