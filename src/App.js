@@ -8,13 +8,20 @@ import Mail from './components/Mail';
 import EmailList from './components/EmailList';
 import SendMail from './components/SendMail';
 import { selectSendMessageIsOpen } from './features/mailSlice';
+import {selectUser} from './features/userSlice';
+import Login from './components/Login';
 
 function App() {
 
   const sendMessageIsOpen = useSelector(selectSendMessageIsOpen);
+  const user = useSelector(selectUser);
 
   return (
     <Router>
+       
+       {!user ? (
+         <Login />
+       ) : (
         <div className="App">
           <Header />
 
@@ -31,6 +38,7 @@ function App() {
           </div>
           {sendMessageIsOpen && <SendMail />}
         </div>
+       )}
     </Router>
   );
 }

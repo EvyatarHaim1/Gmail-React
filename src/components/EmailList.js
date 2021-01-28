@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Section from './Section';
 import styled from 'styled-components';
 import { Checkbox, IconButton } from '@material-ui/core';
@@ -13,8 +13,25 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import PeopleIcon from '@material-ui/icons/People';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import EmailRow from './EmailRow';
+import { db } from '../firebase';
 
 function EmailList() {
+
+    const [emails, setEmails ] = useState([]); 
+
+    useEffect(() => {
+      db.collection('emails')
+        .orderBy('timestamp', 'desc')
+        .onSnapshot(snapshot => 
+            setEmails(
+                snapshot.docs.map((doc) => ({
+                id: doc.id,
+                data: doc.data(),
+            })
+        )))
+
+      
+    },[])
     return (
         <Div>
             <div className="emailList_settings">
@@ -52,16 +69,16 @@ function EmailList() {
             </div>
 
             <div className="emailList_list">
-                <EmailRow title="Twitch" 
-                          subject="Hey fellow streamer" 
-                          description="this is a test" 
-                          time="10pm" 
+                {emails.map(({id, data: { to, subject, message, timestamp } }) => (
+                <EmailRow id={id}
+                          key={id}
+                          title={to}
+                          subject={subject}
+                          description={message}
+                          time={new Date(timestamp?.seconds * 1000).toUTCString()}
                 />
-                <EmailRow title="Facebook" 
-                          subject="Messenger" 
-                          description="this is a testthis is a testthis is a testthis is a testthis is a testthis is a testthis is a testthis is a test" 
-                          time="1:38pm" 
-                />
+                ))
+           }
             </div>
         </Div>
     )
@@ -72,6 +89,13 @@ export default EmailList
 const Div = styled.div`
     flex: 1;
     overflow: scroll;
+
+    ::-webkit-scrollbar{
+        display: none;
+    }
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 
     .emailList_settings{
         position: sticky;
@@ -91,5 +115,9 @@ const Div = styled.div`
         border-bottom: 1px solid whitesmoke;
         background-color: white;
         z-index: 999;
+    }
+
+    .emailList_list{
+        padding-bottom: 20%;
     }
 `

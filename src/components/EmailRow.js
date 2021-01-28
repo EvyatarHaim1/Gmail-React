@@ -4,13 +4,29 @@ import { Checkbox, IconButton } from '@material-ui/core';
 import StarBorderOutlinedIcon from '@material-ui/icons/StarBorderOutlined';
 import LabelImportantOutlinedIcon from '@material-ui/icons/LabelImportantOutlined';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { selectMail } from '../features/mailSlice';
 
-function EmailRow({ title, subject, description, time }) {
+function EmailRow({ id, title, subject, description, time }) {
 
    const history = useHistory();
+   const dispatch = useDispatch();
+
+   const openMail = () => {
+       dispatch(selectMail({
+           id, 
+           title, 
+           subject, 
+           description, 
+           time
+       })
+       );
+       history.push('/mail')
+   }
+
 
     return (
-        <Div onClick={() => history.push('/mail')}>
+        <Div onClick={openMail}>
             <EmailRow_Options>
                 <Checkbox />
                 <IconButton>
