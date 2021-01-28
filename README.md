@@ -6,3 +6,5 @@
 * 👉 REACT HOOKS FORMS
 * 👉 MATERIAL UI (Design)
 * 👉 Styled-Components
+
+![alt text](https://github.com/EvyatarHaim1/Gmail-React/blob/main/src/ScreenView.png)
