@@ -20,18 +20,19 @@ function EmailList() {
     const [emails, setEmails ] = useState([]); 
 
     useEffect(() => {
+        console.log('gfg')
       db.collection('emails')
         .orderBy('timestamp', 'desc')
-        .onSnapshot(snapshot => 
+        .onSnapshot((snapshot) => 
             setEmails(
                 snapshot.docs.map((doc) => ({
                 id: doc.id,
                 data: doc.data(),
             })
         )))
-
-      
+        console.log(emails)
     },[])
+
     return (
         <Div>
             <div className="emailList_settings">
